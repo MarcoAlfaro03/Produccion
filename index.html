@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seguimiento de ventas</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <section class="login-screen" id="loginScreen">
+    <form class="login-card" id="loginForm">
+      <p class="eyebrow">Acceso privado</p>
+      <h1>Control de ventas</h1>
+      <p class="subtitle">Ingresa con tu usuario y contrasena para ver los registros.</p>
+
+      <label>
+        Usuario
+        <input type="text" id="loginUser" autocomplete="username" required>
+      </label>
+
+      <label>
+        Contrasena
+        <input type="password" id="loginPassword" autocomplete="current-password" required>
+      </label>
+
+      <p class="login-error" id="loginError" role="alert"></p>
+      <button type="submit">Entrar</button>
+    </form>
+  </section>
+
+  <div class="app-content" id="appContent" hidden>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">Control de cuentas</p>
+      <h1>Ventas de articulos de revista</h1>
+      <p class="subtitle">Registra ventas, abonos y saldos pendientes por persona.</p>
+      <button class="logout-button" id="logoutBtn" type="button">Cerrar sesion</button>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section class="summary-grid" aria-label="Resumen de cuentas">
+      <article class="summary-card">
+        <span>Total vendido</span>
+        <strong id="totalVendido">CRC 0.00</strong>
+      </article>
+      <article class="summary-card">
+        <span>Total abonado</span>
+        <strong id="totalAbonado">CRC 0.00</strong>
+      </article>
+      <article class="summary-card accent">
+        <span>Saldo pendiente</span>
+        <strong id="saldoPendiente">CRC 0.00</strong>
+      </article>
+    </section>
+    <p class="summary-note" id="summaryNote">Mostrando resumen general.</p>
+
+    <section class="workspace">
+      <form class="entry-form" id="ventaForm">
+        <div class="section-heading">
+          <h2>Nuevo registro</h2>
+          <p>Ingresa una venta o agrega un abono a una cuenta existente.</p>
+        </div>
+
+        <label>
+          Fecha
+          <input type="date" id="fecha" required>
+        </label>
+
+        <label>
+          Persona
+          <input type="text" id="persona" placeholder="Nombre de la persona" required>
+        </label>
+
+        <label>
+          Articulo
+          <input type="text" id="articulo" placeholder="Ej. Revista, perfume, crema">
+        </label>
+
+        <div class="form-row">
+          <label>
+            Monto a deber
+            <input type="number" id="montoDebe" min="0" step="0.01" placeholder="0.00">
+          </label>
+
+          <label>
+            Monto abonado
+            <input type="number" id="montoAbono" min="0" step="0.01" placeholder="0.00">
+          </label>
+        </div>
+
+        <button type="submit">Guardar registro</button>
+      </form>
+
+      <section class="records-panel">
+        <div class="records-header">
+          <div class="section-heading">
+            <h2>Registros</h2>
+            <p>Consulta el historial y el saldo de cada venta.</p>
+          </div>
+          <button class="secondary-button" id="limpiarTodo" type="button">Limpiar todo</button>
+        </div>
+
+        <div class="filters">
+          <label>
+            Buscar
+            <input type="search" id="busqueda" placeholder="Filtrar por persona o articulo">
+          </label>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Persona</th>
+                <th>Articulo</th>
+                <th>Debe</th>
+                <th>Abonado</th>
+                <th>Saldo</th>
+                <th>Accion</th>
+              </tr>
+            </thead>
+            <tbody id="tablaRegistros">
+              <tr>
+                <td colspan="7" class="empty-state">No hay registros todavia.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+  </div>
+
+  <script src="java/app.js"></script>
+</body>
+</html>
